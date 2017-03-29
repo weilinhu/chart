@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+    <dict>
+        <dict>
+            <name>[微笑]</name>
+            <file>MD_001.png</file>
+        </dict>
+
+        <dict>
+            <name>[难过]</name>
+            <file>MD_002.png</file>
+        </dict>
+
+        <dict>
+            <name>[好喜欢]</name>
+            <file>MD_003.png</file>
+        </dict>
+
+        <dict>
+            <name>[可怜]</name>
+            <file>MD_004.png</file>
+        </dict>
+
+        <dict>
+            <name>[哭]</name>
+            <file>MD_005.png</file>
+        </dict>
+
+        <dict>
+            <name>[害羞]</name>
+            <file>MD_006.png</file>
+        </dict>
+
+        <dict>
+            <name>[闭嘴]</name>
+            <file>MD_007.png</file>
+        </dict>
+
+        <dict>
+            <name>[睡觉]</name>
+            <file>MD_008.png</file>
+        </dict>
+
+        <dict>
+            <name>[笑cry]</name>
+            <file>MD_009.png</file>
+        </dict>
+
+        <dict>
+            <name>[怒]</name>
+            <file>MD_010.png</file>
+        </dict>
+
+        <dict>
+            <name>[爆青筋]</name>
+            <file>MD_011.png</file>
+        </dict>
+
+        <dict>
+            <name>[尴尬]</name>
+            <file>MD_012.png</file>
+        </dict>
+
+        <dict>
+            <name>[不开心]</name>
+            <file>MD_013.png</file>
+        </dict>
+
+        <dict>
+            <name>[开心]</name>
+            <file>MD_014.png</file>
+        </dict>
+
+        <dict>
+            <name>[惊讶]</name>
+            <file>MD_015.png</file>
+        </dict>
+
+        <dict>
+            <name>[啊]</name>
+            <file>MD_016.png</file>
+        </dict>
+
+        <dict>
+            <name>[闹别扭]</name>
+            <file>MD_017.png</file>
+        </dict>
+
+        <dict>
+            <name>[哇]</name>
+            <file>MD_018.png</file>
+        </dict>
+
+        <dict>
+            <name>[叹气]</name>
+            <file>MD_019.png</file>
+        </dict>
+
+        <dict>
+            <name>[抓狂]</name>
+            <file>MD_020.png</file>
+        </dict>
+
+        <dict>
+            <name>[嘻嘻]</name>
+            <file>MD_021.png</file>
+        </dict>
+
+        <dict>
+            <name>[额]</name>
+            <file>MD_022.png</file>
+        </dict>
+
+        <dict>
+            <name>[亲亲]</name>
+            <file>MD_023.png</file>
+        </dict>
+
+        <dict>
+            <name>[白眼]</name>
+            <file>MD_024.png</file>
+        </dict>
+
+        <dict>
+            <name>[挨巴掌]</name>
+            <file>MD_025.png</file>
+        </dict>
+
+        <dict>
+            <name>[挨揍]</name>
+            <file>MD_026.png</file>
+        </dict>
+
+        <dict>
+            <name>[放空]</name>
+            <file>MD_027.png</file>
+        </dict>
+
+        <dict>
+            <name>[傲娇]</name>
+            <file>MD_028.png</file>
+        </dict>
+
+        <dict>
+            <name>[哼]</name>
+            <file>MD_029.png</file>
+        </dict>
+
+        <dict>
+            <name>[汗]</name>
+            <file>MD_030.png</file>
+        </dict>
+
+        <dict>
+            <name>[衰]</name>
+            <file>MD_031.png</file>
+        </dict>
+
+        <dict>
+            <name>[鼻孔]</name>
+            <file>MD_032.png</file>
+        </dict>
+
+        <dict>
+            <name>[作呕]</name>
+            <file>MD_033.png</file>
+        </dict>
+
+        <dict>
+            <name>[吐]</name>
+            <file>MD_034.png</file>
+        </dict>
+
+        <dict>
+            <name>[财迷]</name>
+            <file>MD_035.png</file>
+        </dict>
+
+        <dict>
+            <name>[加油]</name>
+            <file>MD_036.png</file>
+        </dict>
+
+        <dict>
+            <name>[呵呵]</name>
+            <file>MD_037.png</file>
+        </dict>
+
+        <dict>
+            <name>[YY]</name>
+            <file>MD_038.png</file>
+        </dict>
+
+        <dict>
+            <name>[黑眼圈]</name>
+            <file>MD_039.png</file>
+        </dict>
+
+        <dict>
+            <name>[虾米]</name>
+            <file>MD_040.png</file>
+        </dict>
+
+        <dict>
+            <name>[爱心]</name>
+            <file>MD_041.png</file>
+        </dict>
+
+        <dict>
+            <name>[心碎]</name>
+            <file>MD_042.png</file>
+        </dict>
+
+        <dict>
+            <name>[惨白无力]</name>
+            <file>MD_043.png</file>
+        </dict>
+
+        <dict>
+            <name>[阴险]</name>
+            <file>MD_044.png</file>
+        </dict>
+
+        <dict>
+            <name>[晕]</name>
+            <file>MD_045.png</file>
+        </dict>
+
+        <dict>
+            <name>[拳头]</name>
+            <file>MD_046.png</file>
+        </dict>
+
+        <dict>
+            <name>[GOOD]</name>
+            <file>MD_047.png</file>
+        </dict>
+
+        <dict>
+            <name>[NO]</name>
+            <file>MD_048.png</file>
+        </dict>
+
+        <dict>
+            <name>[OK]</name>
+            <file>MD_049.png</file>
+        </dict>
+
+        <dict>
+            <name>[YEAH]</name>
+            <file>MD_050.png</file>
+        </dict>
+    </dict>
+</plist>

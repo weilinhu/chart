@@ -1,0 +1,16 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/home_bg" android:scaleType="centerCrop" />
+    <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/mask_home_bg" android:scaleType="centerCrop" />
+    <android.support.v4.widget.SwipeRefreshLayout android:id="@+id/swipe_refresh" android:layout_width="match_parent" android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView android:id="@+id/recycler_view" android:layout_width="match_parent" android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <FrameLayout android:id="@+id/top_aspect_layout" android:background="#4a2c49" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:padding="12dp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:textColor="@color/default_white" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="快去查看你今天的完整运势" />
+            <TextView android:textSize="12sp" android:textColor="@color/accent" android:id="@+id/sub_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="今天有13个影响你的行运" />
+        </LinearLayout>
+        <View android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:background="@color/alpha_white_color_20" android:layout_width="UNKNOWN_DATA_0x101" android:layout_height="UNKNOWN_DATA_0x2301" android:layout_marginRight="50dp" />
+        <ImageView android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:id="@+id/aspect_close" android:layout_width="UNKNOWN_DATA_0x3201" android:layout_height="UNKNOWN_DATA_0x3201" android:src="@drawable/shape_aspect_close" android:scaleType="centerInside" />
+    </FrameLayout>
+    <com.mmmono.starcity.ui.view.MoonLoadingView android:id="@+id/transit_loading" android:visibility="gone" android:layout_width="match_parent" android:layout_height="match_parent" />
+</FrameLayout>

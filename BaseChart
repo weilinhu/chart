@@ -1,0 +1,251 @@
+package com.mmmono.starcity.ui.view;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Paint.Cap;
+import android.graphics.Paint.Style;
+import android.graphics.Path;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Build.VERSION;
+import android.util.AttributeSet;
+import android.view.View;
+import com.mmmono.starcity.R;
+import com.mmmono.starcity.model.local.FortuneEntry;
+import im.actor.runtime.actors.ActorSystem;
+import im.actor.sdk.util.Screen;
+import java.util.List;
+
+/* compiled from: TbsSdkJava */
+public class BezierChartView extends View {
+    private static final int a = Screen.dp(20.0f);
+    private Paint b;
+    private Paint c;
+    private Paint d;
+    private Paint e;
+    private Paint f;
+    private Paint g;
+    private Path h;
+    private Path i;
+    private Path j;
+    private float k;
+    private float l;
+    private float m;
+    private float n;
+    private float o;
+    private String[] p;
+    private List<FortuneEntry> q;
+    private int r;
+    private int s;
+    private int t;
+    private FortuneEntry u;
+    private int v;
+
+    public BezierChartView(Context context) {
+        this(context, null);
+    }
+
+    public BezierChartView(Context context, AttributeSet attributeSet) {
+        this(context, attributeSet, 0);
+    }
+
+    public BezierChartView(Context context, AttributeSet attributeSet, int i) {
+        super(context, attributeSet, i);
+        this.h = new Path();
+        this.i = new Path();
+        this.j = new Path();
+        this.k = 0.0f;
+        this.l = 0.0f;
+        this.o = 0.2f;
+        this.p = new String[]{"", "1", "2", "3", "4", "5"};
+        a();
+    }
+
+    private void a() {
+        this.b = new Paint(1);
+        this.b.setStyle(Style.STROKE);
+        this.b.setStrokeCap(Cap.ROUND);
+        this.b.setStrokeWidth((float) Screen.dp(2.0f));
+        this.c = new Paint(1);
+        this.c.setStyle(Style.FILL);
+        this.d = new Paint(1);
+        this.d.setStyle(Style.STROKE);
+        this.d.setStrokeWidth((float) Screen.dp(0.5f));
+        this.d.setColor(getResources().getColor(R.color.alpha_white_color_10));
+        this.e = new Paint(1);
+        this.e.setStyle(Style.STROKE);
+        this.e.setColor(-1);
+        this.e.setStrokeWidth((float) Screen.dp(2.0f));
+        this.f = new Paint(1);
+        this.f.setTextSize((float) Screen.dp(10.0f));
+        this.f.setColor(getResources().getColor(R.color.alpha_white_color_30));
+        this.g = new Paint(1);
+        this.g.setTextSize((float) Screen.dp(12.0f));
+        this.g.setColor(getResources().getColor(R.color.default_white));
+    }
+
+    public void a(int i, FortuneEntry fortuneEntry) {
+        this.v = i;
+        this.u = fortuneEntry;
+    }
+
+    public void a(List<FortuneEntry> list, boolean z) {
+        this.q = list;
+        if (z) {
+            this.r = R.color.fortune_love_red;
+            this.s = R.color.fortune_love_red_10;
+            this.t = R.drawable.icon_current_love_fortune;
+            return;
+        }
+        this.r = R.color.fortune_wealth_yellow;
+        this.s = R.color.fortune_wealth_yellow_10;
+        this.t = R.drawable.icon_current_wealth_fortune;
+    }
+
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        int measuredWidth = getMeasuredWidth() - (a * 2);
+        int measuredHeight = getMeasuredHeight() - (a * 2);
+        if (measuredWidth > 0 && measuredHeight > 0 && this.q != null) {
+            float a;
+            this.m = (float) (measuredWidth / (this.q.size() - 1));
+            this.n = (float) (measuredHeight / 5);
+            canvas.translate((float) a, (float) a);
+            if (this.u != null) {
+                a = a(this.u.getY());
+                if (a > 0.0f) {
+                    this.j.reset();
+                    this.j.moveTo(this.k, a);
+                    this.j.lineTo((float) measuredWidth, a);
+                    canvas.drawPath(this.j, this.d);
+                }
+                this.j.reset();
+                this.j.moveTo(b(this.u.getX()), this.l);
+                this.j.lineTo(b(this.u.getX()), (float) measuredHeight);
+                canvas.drawPath(this.j, this.d);
+            }
+            int size = this.q.size() - 1;
+            this.h.reset();
+            this.i.reset();
+            FortuneEntry fortuneEntry = (FortuneEntry) this.q.get(0);
+            FortuneEntry fortuneEntry2 = (FortuneEntry) this.q.get(0);
+            int i = -1;
+            if (fortuneEntry2 != null) {
+                int save;
+                this.h.moveTo(b(fortuneEntry2.getX()), a(fortuneEntry2.getY()));
+                this.i.moveTo(b(fortuneEntry2.getX()), a(fortuneEntry2.getY()));
+                int i2 = 1;
+                FortuneEntry fortuneEntry3 = fortuneEntry2;
+                FortuneEntry fortuneEntry4 = fortuneEntry2;
+                fortuneEntry2 = fortuneEntry;
+                fortuneEntry = fortuneEntry4;
+                while (i2 <= size) {
+                    FortuneEntry fortuneEntry5 = i == i2 ? fortuneEntry : (FortuneEntry) this.q.get(i2);
+                    if (i2 + 1 < this.q.size()) {
+                        i = i2 + 1;
+                    } else {
+                        i = i2;
+                    }
+                    FortuneEntry fortuneEntry6 = (FortuneEntry) this.q.get(i);
+                    float a2 = a(fortuneEntry5.getY());
+                    a = a(fortuneEntry2.getY());
+                    float a3 = a(fortuneEntry6.getY());
+                    float a4 = a(fortuneEntry3.getY());
+                    float b = b(fortuneEntry5.getX());
+                    float b2 = b(fortuneEntry2.getX());
+                    float b3 = b(fortuneEntry6.getX());
+                    float b4 = b(fortuneEntry3.getX());
+                    float f = (b - b2) * this.o;
+                    float f2 = (a2 - a) * this.o;
+                    float f3 = (b3 - b4) * this.o;
+                    float f4 = (a3 - a4) * this.o;
+                    this.h.cubicTo(b4 + f, a4 + f2, b - f3, a2 - f4, b, a2);
+                    if (i2 <= this.v) {
+                        this.i.cubicTo(b4 + f, a4 + f2, b - f3, a2 - f4, b, a2);
+                    }
+                    if (i2 == this.v) {
+                        this.i.lineTo(b, (float) measuredHeight);
+                    }
+                    i2++;
+                    fortuneEntry = fortuneEntry6;
+                    fortuneEntry2 = fortuneEntry3;
+                    fortuneEntry3 = fortuneEntry5;
+                }
+                this.i.lineTo(this.k, (float) measuredHeight);
+                this.i.close();
+                if (VERSION.SDK_INT >= 18) {
+                    save = canvas.save();
+                    canvas.clipPath(this.i);
+                    canvas.drawColor(getResources().getColor(this.s));
+                    canvas.restoreToCount(save);
+                } else {
+                    this.c.setColor(getResources().getColor(this.s));
+                    canvas.drawPath(this.i, this.c);
+                    this.c.setPathEffect(null);
+                }
+                this.b.setColor(getResources().getColor(this.r));
+                this.b.setStyle(Style.STROKE);
+                canvas.drawPath(this.h, this.b);
+                this.b.setPathEffect(null);
+                for (save = 5; save >= 0; save--) {
+                    canvas.drawText(this.p[save], this.k - ((float) (a / 2)), (this.l + 10.0f) + (this.n * ((float) (5 - save))), this.f);
+                }
+                canvas.drawText(((FortuneEntry) this.q.get(0)).getDate(), this.k - ((float) (a / 2)), (float) ((a / 2) + measuredHeight), this.f);
+                canvas.drawText(((FortuneEntry) this.q.get(this.q.size() - 1)).getDate(), (float) (measuredWidth - a), (float) ((a / 2) + measuredHeight), this.f);
+                if (this.u != null) {
+                    canvas.drawLine(b(this.u.getX()), a(this.u.getY()), b(this.u.getX()), (float) (measuredHeight + 5), this.e);
+                    canvas.drawBitmap(((BitmapDrawable) getResources().getDrawable(this.t)).getBitmap(), b(this.u.getX()) - ((float) Screen.dp(11.0f)), a(this.u.getY()) - ((float) Screen.dp(11.0f)), null);
+                    canvas.drawText("今天", b(this.u.getX()) - ((float) Screen.dp(12.0f)), ((float) measuredHeight) + (((float) a) / ActorSystem.THREAD_MULTIPLIER), this.g);
+                }
+            }
+        }
+    }
+
+    private float a(float f) {
+        float f2 = (5.0f - f) * this.n;
+        if (f2 < 0.0f) {
+            return 0.0f;
+        }
+        return f2 > this.n * 5.0f ? this.n * 5.0f : f2;
+    }
+
+    private float b(float f) {
+        return this.m * f;
+    }
+}
+
+public class FortuneEntry {
+    private String date;
+    private float x;
+    private float y;
+
+    public FortuneEntry(float f, float f2, String str) {
+        this.x = f;
+        this.y = f2;
+        this.date = str;
+    }
+
+    public float getX() {
+        return this.x;
+    }
+
+    public void setX(float f) {
+        this.x = f;
+    }
+
+    public float getY() {
+        return this.y;
+    }
+
+    public void setY(float f) {
+        this.y = f;
+    }
+
+    public String getDate() {
+        return this.date;
+    }
+
+    public void setDate(String str) {
+        this.date = str;
+    }
+}

@@ -1,0 +1,102 @@
+package com.mmmono.starcity.ui.tab.home.view;
+
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableString;
+import android.util.AttributeSet;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import com.mmmono.starcity.R;
+import com.mmmono.starcity.model.transit.Fortune;
+import com.mmmono.starcity.model.transit.FortuneHint;
+import com.mmmono.starcity.model.transit.RecentFortune;
+import com.mmmono.starcity.ui.view.a;
+import com.mmmono.starcity.util.d;
+import java.util.ArrayList;
+import java.util.List;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+
+/* compiled from: TbsSdkJava */
+public class RecentFortuneView extends FrameLayout {
+    @BindView(2131756122)
+    LinearLayout fortuneDescLayout;
+    @BindView(2131756123)
+    TextView fortuneText;
+    @BindView(2131756030)
+    FortuneView fortuneView;
+
+    public RecentFortuneView(Context context) {
+        this(context, null);
+    }
+
+    public RecentFortuneView(Context context, AttributeSet attributeSet) {
+        this(context, attributeSet, 0);
+    }
+
+    public RecentFortuneView(Context context, AttributeSet attributeSet, int i) {
+        super(context, attributeSet, i);
+        a(context);
+    }
+
+    private void a(Context context) {
+        inflate(context, R.layout.view_recent_fortune_layout, this);
+        ButterKnife.bind(this);
+    }
+
+    public void a(RecentFortune recentFortune, boolean z) {
+        this.fortuneView.a(recentFortune, z);
+        for (int i = 0; i < recentFortune.getFortuneList().size(); i++) {
+            Fortune fortune = (Fortune) recentFortune.getFortuneList().get(i);
+            if (a(fortune.getBaseLineTime())) {
+                a(fortune.getFortuneHintList());
+                return;
+            }
+        }
+    }
+
+    private void a(List<FortuneHint> list) {
+        if (list == null || list.isEmpty()) {
+            this.fortuneDescLayout.setVisibility(8);
+            return;
+        }
+        this.fortuneDescLayout.setVisibility(0);
+        CharSequence stringBuilder = new StringBuilder();
+        int size = list.size();
+        stringBuilder.append(size).append("个影响因素：");
+        List<Integer[]> arrayList = new ArrayList();
+        for (int i = 0; i < size; i++) {
+            arrayList.add(new Integer[]{Integer.valueOf(stringBuilder.length()), Integer.valueOf(((FortuneHint) list.get(i)).getAffectType())});
+            stringBuilder.append("   ").append(r0.getDesc());
+            if (i != size - 1) {
+                stringBuilder.append("/ ");
+            }
+        }
+        CharSequence spannableString = new SpannableString(stringBuilder);
+        for (Integer[] numArr : arrayList) {
+            size = numArr[0].intValue();
+            Drawable drawable = getResources().getDrawable(a(numArr[1].intValue()));
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            spannableString.setSpan(new a(drawable, 1), size, size + 2, 33);
+        }
+        this.fortuneText.setText(spannableString);
+    }
+
+    private int a(int i) {
+        switch (i) {
+            case 2:
+                return R.drawable.icon_aspect_negative;
+            case 3:
+                return R.drawable.icon_aspect_wave;
+            default:
+                return R.drawable.icon_aspect_positive;
+        }
+    }
+
+    private boolean a(String str) {
+        return d.b(new DateTime(str, DateTimeZone.forID("Asia/Shanghai")));
+    }
+}

@@ -1,0 +1,146 @@
+package com.mmmono.starcity.ui.tab.home.view;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.RatingBar;
+import android.widget.TextView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import com.mmmono.starcity.R;
+import com.mmmono.starcity.model.local.FortuneEntry;
+import com.mmmono.starcity.model.local.FortunePointEntry;
+import com.mmmono.starcity.model.transit.Fortune;
+import com.mmmono.starcity.model.transit.FortuneHint;
+import com.mmmono.starcity.model.transit.RecentFortune;
+import com.mmmono.starcity.ui.view.BezierChartView;
+import com.mmmono.starcity.ui.view.KeyPointGroup;
+import com.mmmono.starcity.ui.view.wave.WavePointView;
+import com.mmmono.starcity.util.d;
+import im.actor.runtime.actors.ActorSystem;
+import java.util.ArrayList;
+import java.util.List;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+
+/* compiled from: TbsSdkJava */
+public class FortuneView extends FrameLayout {
+    private static final String a = "恋爱运";
+    private static final String b = "财运";
+    private int c;
+    @BindView(2131756028)
+    BezierChartView chart;
+    private String d;
+    private float e;
+    @BindView(2131756025)
+    TextView fortuneName;
+    @BindView(2131756029)
+    KeyPointGroup keyGroup;
+    @BindView(2131756026)
+    RatingBar loveFortuneValue;
+    @BindView(2131756027)
+    RatingBar wealthFortuneValue;
+
+    public FortuneView(Context context) {
+        this(context, null);
+    }
+
+    public FortuneView(Context context, AttributeSet attributeSet) {
+        this(context, attributeSet, 0);
+    }
+
+    public FortuneView(Context context, AttributeSet attributeSet, int i) {
+        super(context, attributeSet, i);
+        a(context);
+    }
+
+    private void a(Context context) {
+        inflate(context, R.layout.view_fortune_layout, this);
+        ButterKnife.bind(this);
+    }
+
+    public void a(RecentFortune recentFortune, boolean z) {
+        int i;
+        if (z) {
+            this.c = R.color.fortune_love_red;
+            this.d = a;
+            this.loveFortuneValue.setVisibility(0);
+            this.wealthFortuneValue.setVisibility(8);
+        } else {
+            this.c = R.color.fortune_wealth_yellow;
+            this.d = b;
+            this.loveFortuneValue.setVisibility(8);
+            this.wealthFortuneValue.setVisibility(0);
+        }
+        this.fortuneName.setText(this.d);
+        this.fortuneName.setTextColor(getResources().getColor(this.c));
+        List fortuneList = recentFortune.getFortuneList();
+        List arrayList = new ArrayList();
+        List arrayList2 = new ArrayList();
+        for (i = 0; i < fortuneList.size(); i++) {
+            Fortune fortune = (Fortune) fortuneList.get(i);
+            String b = b(fortune.getBaseLineTime());
+            boolean a = a(fortune.getBaseLineTime());
+            float value = fortune.getValue() < 0.0f ? 0.0f : fortune.getValue() > 5.0f ? 5.0f : fortune.getValue();
+            arrayList.add(new FortuneEntry((float) i, value, b));
+            if (a) {
+                this.e = value;
+                this.chart.a(i, new FortuneEntry((float) i, value, b));
+            }
+            if (fortune.getFortuneHintList() != null) {
+                for (FortuneHint fortuneHint : fortune.getFortuneHintList()) {
+                    if (fortuneHint.isWavePoint()) {
+                        FortunePointEntry fortunePointEntry = new FortunePointEntry((float) i, value, fortuneHint);
+                        fortunePointEntry.setToday(a);
+                        arrayList2.add(fortunePointEntry);
+                        break;
+                    }
+                }
+            }
+        }
+        this.chart.a(arrayList, z);
+        this.chart.invalidate();
+        if (this.e < 0.7f) {
+            this.e = 0.5f;
+        } else if (this.e > 1.3f && this.e < 1.7f) {
+            this.e = ActorSystem.THREAD_MULTIPLIER;
+        } else if (this.e > 2.3f && this.e < 2.7f) {
+            this.e = 2.5f;
+        } else if (this.e > 3.3f && this.e < 3.7f) {
+            this.e = 3.5f;
+        } else if (((double) this.e) > 4.3d && this.e < 4.7f) {
+            this.e = 4.5f;
+        }
+        if (z) {
+            this.loveFortuneValue.setRating(this.e);
+        } else {
+            this.wealthFortuneValue.setRating(this.e);
+        }
+        this.keyGroup.removeAllViews();
+        if (arrayList2.size() > 0) {
+            for (i = 0; i < arrayList2.size(); i++) {
+                FortunePointEntry fortunePointEntry2 = (FortunePointEntry) arrayList2.get(i);
+                if (!(fortunePointEntry2 == null || fortunePointEntry2.getFortuneHint() == null)) {
+                    View wavePointView = new WavePointView(getContext());
+                    wavePointView.a(fortunePointEntry2.getFortuneHint(), z, fortunePointEntry2.isToday());
+                    this.keyGroup.addView(wavePointView);
+                }
+            }
+            this.keyGroup.setVisibility(0);
+            this.keyGroup.setKeyPoints(arrayList2);
+            this.keyGroup.requestLayout();
+            this.keyGroup.invalidate();
+            return;
+        }
+        this.keyGroup.setVisibility(8);
+    }
+
+    private boolean a(String str) {
+        return d.b(new DateTime(str, DateTimeZone.forID("Asia/Shanghai")));
+    }
+
+    private String b(String str) {
+        return new DateTime(str).toString("M月dd");
+    }
+}
